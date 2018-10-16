@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLSINHVIEN4Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="QLSINHVIEN4ModelStoreContainer">
+    <EntitySet Name="CHUONGTRINH" EntityType="QLSINHVIEN4Model.Store.CHUONGTRINH" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KETQUA" EntityType="QLSINHVIEN4Model.Store.KETQUA" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KHOA" EntityType="QLSINHVIEN4Model.Store.KHOA" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KHOAHOC" EntityType="QLSINHVIEN4Model.Store.KHOAHOC" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LOP" EntityType="QLSINHVIEN4Model.Store.LOP" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MONHOC" EntityType="QLSINHVIEN4Model.Store.MONHOC" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SINHVIEN" EntityType="QLSINHVIEN4Model.Store.SINHVIEN" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FRK_KETQUA_MONHOC" Association="QLSINHVIEN4Model.Store.FRK_KETQUA_MONHOC">
+      <End Role="MONHOC" EntitySet="MONHOC" />
+      <End Role="KETQUA" EntitySet="KETQUA" />
+    </AssociationSet>
+    <AssociationSet Name="FRK_KETQUA_SINHVIEN" Association="QLSINHVIEN4Model.Store.FRK_KETQUA_SINHVIEN">
+      <End Role="SINHVIEN" EntitySet="SINHVIEN" />
+      <End Role="KETQUA" EntitySet="KETQUA" />
+    </AssociationSet>
+    <AssociationSet Name="FRK_LOP_CHUONGTRINH" Association="QLSINHVIEN4Model.Store.FRK_LOP_CHUONGTRINH">
+      <End Role="CHUONGTRINH" EntitySet="CHUONGTRINH" />
+      <End Role="LOP" EntitySet="LOP" />
+    </AssociationSet>
+    <AssociationSet Name="FRK_LOP_KHOA" Association="QLSINHVIEN4Model.Store.FRK_LOP_KHOA">
+      <End Role="KHOA" EntitySet="KHOA" />
+      <End Role="LOP" EntitySet="LOP" />
+    </AssociationSet>
+    <AssociationSet Name="FRK_LOP_KHOAHOC" Association="QLSINHVIEN4Model.Store.FRK_LOP_KHOAHOC">
+      <End Role="KHOAHOC" EntitySet="KHOAHOC" />
+      <End Role="LOP" EntitySet="LOP" />
+    </AssociationSet>
+    <AssociationSet Name="FRK_MONHOC_KHOA" Association="QLSINHVIEN4Model.Store.FRK_MONHOC_KHOA">
+      <End Role="KHOA" EntitySet="KHOA" />
+      <End Role="MONHOC" EntitySet="MONHOC" />
+    </AssociationSet>
+    <AssociationSet Name="FRK_SINHVIEN_LOP" Association="QLSINHVIEN4Model.Store.FRK_SINHVIEN_LOP">
+      <End Role="LOP" EntitySet="LOP" />
+      <End Role="SINHVIEN" EntitySet="SINHVIEN" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CHUONGTRINH">
+    <Key>
+      <PropertyRef Name="MaCT" />
+    </Key>
+    <Property Name="MaCT" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="TenChuongTrinh" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="KETQUA">
+    <Key>
+      <PropertyRef Name="MaSV" />
+      <PropertyRef Name="MaMH" />
+      <PropertyRef Name="LanThi" />
+    </Key>
+    <Property Name="MaSV" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="MaMH" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="LanThi" Type="int" Nullable="false" />
+    <Property Name="Diem" Type="float" />
+  </EntityType>
+  <EntityType Name="KHOA">
+    <Key>
+      <PropertyRef Name="MaKhoa" />
+    </Key>
+    <Property Name="MaKhoa" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="TenKhoa" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="NamThanhLap" Type="int" />
+  </EntityType>
+  <EntityType Name="KHOAHOC">
+    <Key>
+      <PropertyRef Name="MaKhoaHoc" />
+    </Key>
+    <Property Name="MaKhoaHoc" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="NamBatDau" Type="int" />
+    <Property Name="NamKetThuc" Type="int" />
+  </EntityType>
+  <EntityType Name="LOP">
+    <Key>
+      <PropertyRef Name="MaLop" />
+    </Key>
+    <Property Name="MaLop" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="TenLop" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaKhoaHoc" Type="varchar" MaxLength="10" />
+    <Property Name="MaKhoa" Type="varchar" MaxLength="10" />
+    <Property Name="MaCT" Type="varchar" MaxLength="10" />
+    <Property Name="SoThuTu" Type="int" />
+  </EntityType>
+  <EntityType Name="MONHOC">
+    <Key>
+      <PropertyRef Name="MaMH" />
+    </Key>
+    <Property Name="MaMH" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="TenMonHoc" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="MaKhoa" Type="varchar" MaxLength="10" />
+    <Property Name="SoTC" Type="int" />
+  </EntityType>
+  <EntityType Name="SINHVIEN">
+    <Key>
+      <PropertyRef Name="MaSV" />
+    </Key>
+    <Property Name="MaSV" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="HoTen" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="NgaySinh" Type="datetime" />
+    <Property Name="GioiTinh" Type="bit" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="100" />
+    <Property Name="MaLop" Type="varchar" MaxLength="10" />
+    <Property Name="Hinh" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FRK_KETQUA_MONHOC">
+    <End Role="MONHOC" Type="QLSINHVIEN4Model.Store.MONHOC" Multiplicity="1" />
+    <End Role="KETQUA" Type="QLSINHVIEN4Model.Store.KETQUA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MONHOC">
+        <PropertyRef Name="MaMH" />
+      </Principal>
+      <Dependent Role="KETQUA">
+        <PropertyRef Name="MaMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FRK_KETQUA_SINHVIEN">
+    <End Role="SINHVIEN" Type="QLSINHVIEN4Model.Store.SINHVIEN" Multiplicity="1" />
+    <End Role="KETQUA" Type="QLSINHVIEN4Model.Store.KETQUA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SINHVIEN">
+        <PropertyRef Name="MaSV" />
+      </Principal>
+      <Dependent Role="KETQUA">
+        <PropertyRef Name="MaSV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FRK_LOP_CHUONGTRINH">
+    <End Role="CHUONGTRINH" Type="QLSINHVIEN4Model.Store.CHUONGTRINH" Multiplicity="0..1" />
+    <End Role="LOP" Type="QLSINHVIEN4Model.Store.LOP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHUONGTRINH">
+        <PropertyRef Name="MaCT" />
+      </Principal>
+      <Dependent Role="LOP">
+        <PropertyRef Name="MaCT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FRK_LOP_KHOA">
+    <End Role="KHOA" Type="QLSINHVIEN4Model.Store.KHOA" Multiplicity="0..1" />
+    <End Role="LOP" Type="QLSINHVIEN4Model.Store.LOP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHOA">
+        <PropertyRef Name="MaKhoa" />
+      </Principal>
+      <Dependent Role="LOP">
+        <PropertyRef Name="MaKhoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FRK_LOP_KHOAHOC">
+    <End Role="KHOAHOC" Type="QLSINHVIEN4Model.Store.KHOAHOC" Multiplicity="0..1" />
+    <End Role="LOP" Type="QLSINHVIEN4Model.Store.LOP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHOAHOC">
+        <PropertyRef Name="MaKhoaHoc" />
+      </Principal>
+      <Dependent Role="LOP">
+        <PropertyRef Name="MaKhoaHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FRK_MONHOC_KHOA">
+    <End Role="KHOA" Type="QLSINHVIEN4Model.Store.KHOA" Multiplicity="0..1" />
+    <End Role="MONHOC" Type="QLSINHVIEN4Model.Store.MONHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHOA">
+        <PropertyRef Name="MaKhoa" />
+      </Principal>
+      <Dependent Role="MONHOC">
+        <PropertyRef Name="MaKhoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FRK_SINHVIEN_LOP">
+    <End Role="LOP" Type="QLSINHVIEN4Model.Store.LOP" Multiplicity="0..1" />
+    <End Role="SINHVIEN" Type="QLSINHVIEN4Model.Store.SINHVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOP">
+        <PropertyRef Name="MaLop" />
+      </Principal>
+      <Dependent Role="SINHVIEN">
+        <PropertyRef Name="MaLop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
